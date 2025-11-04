@@ -253,7 +253,10 @@ Para pasar a formato _tidy_ necesitamos realizar dos operaciones en este caso. E
 Convierte el conjunto de datos TB en _tidy_ utilizando `gather` y `separate`.
 
 ```{r}
-
+TB_tidy <- raw %>% 
+  gather(key = "casos", value = "valores", -c(country,year)) %>% 
+  separate(casos, into = c("sexo", "edad"), sep = 1)
+head(TB_tidy)
 ```
 
 
