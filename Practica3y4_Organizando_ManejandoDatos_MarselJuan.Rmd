@@ -230,8 +230,8 @@ Obtén la versión _tidy_ de este conjunto de datos usando `pivot_longer`.
 Consejo: puedes eliminar el prefijo `wk` de las semanas mediante el argumento `names_prefix`. Opcionalmente puedes crear una columna `date` a partir de `date.entered`, sumando las semanas transcurridas desde la fecha de entrada en lista.
 
 ```{r}
-
-
+raw_tidy <- raw %>% pivot_longer(paste("wk",1:76,sep=""),names_to= "week",values_to = "value", names_prefix = "wk")
+head(raw_tidy)
 ```
 
 
