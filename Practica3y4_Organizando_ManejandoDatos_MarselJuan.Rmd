@@ -340,9 +340,19 @@ En nuestro estudio queremos aplicar una serie de criterios de exclusión sobre l
 * Nota: Revisar el uso de la función filter vista en clase y tener en cuenta los operadores de comparación: igual ==, distinto !=, mayor >, mayor o igual >=, menor <, menor o igual <=.
 
 ```{r }
+denominaciones_sin_douglas <- grep("DOUGLAS",unique(planes$manufacturer), ignore.case = T, value = TRUE, invert = T)
+planes.f <- planes %>% 
+  filter(manufacturer %in% denominaciones_sin_douglas) %>% 
+  filter(seats>=90,seats<=210) 
+planes.f$manufacturer[grepl("AIRBUS", planes.f$manufacturer,ignore.case = T)] <- "AIRBUS COMP"
 
+# comprobamos que el rango de asientos es el deseado
+range(planes.f$seats) 
+# comprobamos que no hay aviones de la compañía Douglas
+grep("DOUGLAS",unique(planes.f$manufacturer), ignore.case = T, value = TRUE)
 
-
+# comprobamos que la única denominación de AIRBUS es la deseada
+unique(planes.f$manufacturer)
 ```
 
 
