@@ -361,7 +361,7 @@ unique(planes.f$manufacturer)
 Crea un data frame denominado `flights.f` que contenga los vuelos que involucren a los aviones presentes en el data frame `planes.f`. Para ello utiliza algunas de las funciones de **XXX_join** y la variable `tailnum` que es común en ambos data frames. 
 
 ```{r }
-
+flights.f <- inner_join(flights,planes.f, by = "tailnum")
 
 ```
 
@@ -370,7 +370,8 @@ Crea un data frame denominado `flights.f` que contenga los vuelos que involucren
 Reasigna los nombres de los data frames `planes.f` y `flights.f` a los nombres originales  `planes` y `flights`.
 
 ```{r }
-
+planes <- planes.f
+flights <- flights.f
 ```
 
 
@@ -382,7 +383,10 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 * En el data frame  `planes` quédate con todas las variables excepto `speed` y `type`.
 
 ```{r }
-
+flights <- flights %>% select(-c(time_hour,grep("time$",names(flights),ignore.case = T,value = T)))
+head(flights)
+planes <- planes %>% select(-c(speed,type))
+head(planes)
 ```
 
 ### Ejercicio 10
